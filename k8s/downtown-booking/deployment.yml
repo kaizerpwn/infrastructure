@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: netflix-next-container
-          image: ghcr.io/kaizerpwn/nextjs-app:d4333691c317125213ef9cd1baf558b7a2f56a64
+          image: ghcr.io/kaizerpwn/nextjs-app:94746d0c0642dbb19286c92c39329f62facc79d9
           ports:
             - containerPort: 3000
       imagePullSecrets:
