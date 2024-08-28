@@ -17,3 +17,5 @@ spec:
           image: ghcr.io/kaizerpwn/nextjs-app:41bc59cd729b6d63f872dea45e19b692d8a33109
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred
