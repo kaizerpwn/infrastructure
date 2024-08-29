@@ -2,9 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: netflix-next-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   rules:
-    - host: netflix-next.com
+    - host: netflix.kaizer.live
       http:
         paths:
           - path: /
@@ -14,3 +16,7 @@ spec:
                 name: netflix-next-service
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - netflix.kaizer.live
+      secretName: netflix-next-tls
