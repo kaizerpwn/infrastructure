@@ -1,14 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: netflix-next-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
+  name: netflix-next-ingress
+  namespace: default
 spec:
+  ingressClassName: public
   rules:
     - host: netflix.kaizer.live
       http:
         paths:
+          - path: /.well-known/acme-challenge/
+            pathType: Prefix
+            backend:
+              service:
+                name: cm-acme-http-solver-service
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
