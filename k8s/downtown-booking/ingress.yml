@@ -17,7 +17,7 @@ spec:
               service:
                 name: cm-acme-http-solver-service
                 port:
-                  number: 8089
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
