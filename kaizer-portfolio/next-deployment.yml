@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaizer-portfolio-deployment-production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kaizer-portfolio-production
+  template:
+    metadata:
+      labels:
+        app: kaizer-portfolio-production
+    spec:
+      containers:
+        - name: kaizer-portfolio-container-production
+          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:2a6b12621560f64d6de77461a6483c1069cfa501
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred

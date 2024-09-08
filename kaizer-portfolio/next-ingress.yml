@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  name: kaizer-portfolio-ingress-production
+  namespace: kaizer-portfolio
+spec:
+  ingressClassName: public
+  rules:
+    - host: kaizerpwn.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kaizer-portfolio-service-production
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - kaizerpwn.dev
+      secretName: kaizer-portfolio-cert

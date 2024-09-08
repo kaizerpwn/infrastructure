@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: netflix-next-service
+  name: kaizer-portfolio-service-production
 spec:
   type: LoadBalancer
   selector:
-    app: netflix-next
+    app: kaizer-portfolio-production
   ports:
     - protocol: TCP
       port: 80
       targetPort: 3000
-      nodePort: 30000
