@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: kaizer-portfolio-container-production
-          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:ee4c5c48fe3f27783b400df42e75fe7e88591760
+          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:95984e8f6d561b39992a03d14943851e9b2f4f00
           ports:
             - containerPort: 3000
       imagePullSecrets:
