@@ -16,6 +16,8 @@ metadata:
   name: mariadb-venezuela-deployment-staging
   namespace: venezuela
 spec:
+  replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app: mariadb-venezuela-staging
