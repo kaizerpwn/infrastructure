@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mariadb-venezuela-ingress-staging
+  namespace: venezuela
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: public
+  rules:
+    - host: staging-db.vz-rp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mariadb-service-venezuela-staging
+                port:
+                  number: 3306
+  tls:
+    - hosts:
+        - staging.vz-rp.com
+      secretName: mariadb-venezuela-cert-staging
