@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-venezuela-pvc-staging
+  namespace: venezuela
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-venezuela-deployment-staging
+  namespace: venezuela
+spec:
+  selector:
+    matchLabels:
+      app: mariadb-venezuela-staging
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mariadb-venezuela-staging
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: JoyRootPassword333!
+            - name: MYSQL_DATABASE
+              value: venezuela
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: VenezuelaDatabaseRoleplaySince2019!
+          ports:
+            - containerPort: 3306
+              name: mariadb
+          volumeMounts:
+            - name: mariadb-venezuela-storage-staging
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb-venezuela-storage-staging
+          persistentVolumeClaim:
+            claimName: mariadb-venezuela-pvc-staging

@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  name: phpmyadmin-venezuela-ingress-staging
+  namespace: venezuela
+spec:
+  ingressClassName: public
+  rules:
+    - host: staging.vz-rp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phpmyadmin-service-venezuela-staging
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - staging.vz-rp.com
+      secretName: phpmyadmin-venezuela-cert-staging
