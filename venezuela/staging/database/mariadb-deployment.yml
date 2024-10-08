@@ -38,6 +38,16 @@ spec:
               value: root
             - name: MYSQL_PASSWORD
               value: VenezuelaDatabaseRoleplaySince2019!
+            - name: MYSQL_INITDB_SKIP_TZ_GLOBALS
+              value: "1"
+            - name: MYSQL_MAX_ALLOWED_PACKET
+              value: "52428800"
+            - name: MYSQL_INNODB_FILE_PER_TABLE
+              value: "1"
+            - name: MYSQL_WAIT_TIMEOUT
+              value: "28800"
+            - name: MYSQL_INTERACTIVE_TIMEOUT
+              value: "28800"
           ports:
             - containerPort: 3306
               name: mariadb
