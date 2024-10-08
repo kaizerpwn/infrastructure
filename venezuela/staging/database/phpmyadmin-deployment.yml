@@ -26,6 +26,12 @@ spec:
               value: "1"
             - name: MYSQL_ROOT_PASSWORD
               value: JoyRootPassword333!
+            - name: PHP_UPLOAD_MAX_FILESIZE
+              value: "50M"
+            - name: PHP_POST_MAX_SIZE
+              value: "50M"
+            - name: PHP_MAX_EXECUTION_TIME
+              value: "300"
             - name: UPLOAD_LIMIT
               value: "50M"
           ports:
