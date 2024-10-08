@@ -4,7 +4,7 @@ metadata:
   name: mariadb-service-venezuela-staging
   namespace: venezuela
 spec:
-  type: LoadBalancer
+  ClusterIP: None
   ports:
     - port: 3306
       targetPort: 3306
