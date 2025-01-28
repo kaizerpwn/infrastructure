@@ -17,7 +17,7 @@ spec:
         kubernetes.io/arch: arm64
       containers:
         - name: kaizer-portfolio-container-production
-          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:6337157a7dd88821f47ef3a4e6b42abf0401b27b
+          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:93886f414d8873ccef0d5d41e23f5b3c26beacff
           ports:
             - containerPort: 3000
       imagePullSecrets:
