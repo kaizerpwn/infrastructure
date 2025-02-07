@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  name: crazy-donut-ingress-production
+  namespace: crazy-donut
+spec:
+  ingressClassName: public
+  rules:
+    - host: donut.polodev.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: crazy-donut-service-production
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - donut.polodev.net
+      secretName: crazy-donut-cert
