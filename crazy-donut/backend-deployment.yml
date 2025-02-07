@@ -12,6 +12,7 @@ data:
   DB_NAME: Y3JhenktZG9udXQ=
   ADMIN_USERNAME: Q3JhenlEb251dA==
   ADMIN_PASSWORD: TWlsamFja2FGbG93
+  FRONTEND_URL: aHR0cHM6Ly9kb251dC5wb2xvZGV2Lm5ldA==
 
 ---
 apiVersion: apps/v1
