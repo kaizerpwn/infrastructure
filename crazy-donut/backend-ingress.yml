@@ -3,22 +3,22 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-  name: crazy-donut-frontend-ingress-production
+  name: crazy-donut-backend-ingress-production
   namespace: crazy-donut
 spec:
   ingressClassName: public
   rules:
-    - host: donut.polodev.net
+    - host: donut-api.polodev.net
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: crazy-donut-frontend-service-production
+                name: crazy-donut-backend-service-production
                 port:
                   number: 80
   tls:
     - hosts:
-        - donut.polodev.net
-      secretName: crazy-donut-frontend-cert
+        - donut-api.polodev.net
+      secretName: crazy-donut-backend-cert

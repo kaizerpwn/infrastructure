@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: crazy-donut-frontend-service-production
+  name: crazy-donut-backend-service-production
 spec:
   type: LoadBalancer
   selector:
-    app: crazy-donut-frontend-production
+    app: crazy-donut-backend-production
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8000
