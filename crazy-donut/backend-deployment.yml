@@ -5,8 +5,8 @@ metadata:
 type: Opaque
 data:
   SERVER_PORT: ODAwMA==
-  SECRET_KEY: c2VjcmV0
-  DB_HOST: bG9jYWxob3N0
+  SECRET_KEY: YldGeWFXRmtZaTFqY21GNmVTMWtiMjUxZEMxd2NtOWtkV04wYVc5dQ==
+  DB_HOST: bWFyaWFkYi1jcmF6eS1kb251dC1wcm9kdWN0aW9u
   DB_USER: Y3JhenktZG9udXQ=
   DB_PASSWORD: WWVvMHVNSVBQOEZjeWJl
   DB_NAME: Y3JhenktZG9udXQ=
