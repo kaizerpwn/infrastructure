@@ -17,7 +17,7 @@ spec:
         kubernetes.io/arch: arm64
       containers:
         - name: crazy-donut-frontend-container-production
-          image: ghcr.io/kaizerpwn/crazy-donut-frontend:93886f414d8873ccef0d5d41e23f5b3c26beacff
+          image: ghcr.io/kaizerpwn/crazy-donut-frontend:773bea600b3ccfde2f5862bada322f43303e45c0
           ports:
             - containerPort: 80
       imagePullSecrets:
