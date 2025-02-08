@@ -78,5 +78,10 @@ spec:
                 secretKeyRef:
                   name: crazy-donut-backend-secret-production
                   key: ADMIN_PASSWORD
+            - name: FRONTEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: FRONTEND_URL
       imagePullSecrets:
         - name: regcred
