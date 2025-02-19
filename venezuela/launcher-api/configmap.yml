@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: venezuela-launcher-api-config
+spec:
+  data:
+    DB_HOST: "45.8.187.197:3306"
+    DB_NAME: "venezueladb"
+    SERVER_PORT: ":8080"

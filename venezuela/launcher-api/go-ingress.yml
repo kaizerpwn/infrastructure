@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: venezuela-launcher-api-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: public
+  rules:
+    - host: launcher-api.vz-rp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: venezuela-launcher-api-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - launcher-api.vz-rp.com
+      secretName: venezuela-launcher-api-tls
