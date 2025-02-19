@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-crazy-donut-pvc-production
+  namespace: crazy-donut
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-crazy-donut-deployment-production
+  namespace: crazy-donut
+spec:
+  selector:
+    matchLabels:
+      app: mariadb-crazy-donut-production
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mariadb-crazy-donut-production
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: BJVfWRW3ZP3eC
+            - name: MYSQL_DATABASE
+              value: crazy-donut
+            - name: MYSQL_USER
+              value: crazy-donut
+            - name: MYSQL_PASSWORD
+              value: Yeo0uMIPP8Fcybe
+          ports:
+            - containerPort: 3306
+              name: mariadb
+          volumeMounts:
+            - name: mariadb-crazy-donut-storage-production
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb-crazy-donut-storage-production
+          persistentVolumeClaim:
+            claimName: mariadb-crazy-donut-pvc-production

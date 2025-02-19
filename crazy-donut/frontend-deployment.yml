@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crazy-donut-frontend-deployment-production
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: crazy-donut-frontend-production
+  template:
+    metadata:
+      labels:
+        app: crazy-donut-frontend-production
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      containers:
+        - name: crazy-donut-frontend-container-production
+          image: ghcr.io/kaizerpwn/crazy-donut-frontend:5eb7a790f2213d24dad4012fb171adcc2d170a71
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred

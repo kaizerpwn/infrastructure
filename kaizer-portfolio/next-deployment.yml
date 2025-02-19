@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: kaizer-portfolio-deployment-production
 spec:
-  replicas: 3
+  replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app: kaizer-portfolio-production
@@ -12,9 +13,11 @@ spec:
       labels:
         app: kaizer-portfolio-production
     spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
         - name: kaizer-portfolio-container-production
-          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:862b1e8f55becd56b2244d304be3c2b3b6ac66d4
+          image: ghcr.io/kaizerpwn/kaizer-portfolio-next:93886f414d8873ccef0d5d41e23f5b3c26beacff
           ports:
             - containerPort: 3000
       imagePullSecrets:

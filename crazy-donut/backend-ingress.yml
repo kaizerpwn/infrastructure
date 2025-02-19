@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://donut.polodev.net"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  name: crazy-donut-backend-ingress-production
+  namespace: crazy-donut
+spec:
+  ingressClassName: public
+  rules:
+    - host: donut-api.polodev.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: crazy-donut-backend-service-production
+                port:
+                  number: 8000
+  tls:
+    - hosts:
+        - donut-api.polodev.net
+      secretName: crazy-donut-backend-cert

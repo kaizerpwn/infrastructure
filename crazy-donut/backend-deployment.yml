@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: crazy-donut-backend-secret-production
+type: Opaque
+data:
+  SERVER_PORT: ODAwMA==
+  SECRET_KEY: YldGeWFXRmtZaTFqY21GNmVTMWtiMjUxZEMxd2NtOWtkV04wYVc5dQ==
+  DB_HOST: bWFyaWFkYi1zZXJ2aWNlLWNyYXp5LWRvbnV0LXByb2R1Y3Rpb24uY3JhenktZG9udXQuc3ZjLmNsdXN0ZXIubG9jYWw=
+  DB_USER: Y3JhenktZG9udXQ=
+  DB_PASSWORD: WWVvMHVNSVBQOEZjeWJl
+  DB_NAME: Y3JhenktZG9udXQ=
+  ADMIN_USERNAME: Q3JhenlEb251dA==
+  ADMIN_PASSWORD: TWlsamFja2FGbG93
+  FRONTEND_URL: aHR0cHM6Ly9kb251dC5wb2xvZGV2Lm5ldA==
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crazy-donut-backend-deployment-production
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: crazy-donut-backend-production
+  template:
+    metadata:
+      labels:
+        app: crazy-donut-backend-production
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      containers:
+        - name: crazy-donut-backend-container-production
+          image: ghcr.io/kaizerpwn/crazy-donut-backend:b4e939e28470726a1c821b56b6e0c27a554af965
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: SERVER_PORT
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: SECRET_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: DB_HOST
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: DB_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: DB_NAME
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: ADMIN_USERNAME
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: ADMIN_PASSWORD
+            - name: FRONTEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: crazy-donut-backend-secret-production
+                  key: FRONTEND_URL
+      imagePullSecrets:
+        - name: regcred
