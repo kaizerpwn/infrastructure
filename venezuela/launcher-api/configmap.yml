@@ -3,8 +3,7 @@ kind: ConfigMap
 metadata:
   name: venezuela-launcher-api-config
   namespace: venezuela
-spec:
-  data:
-    DB_HOST: "45.8.187.197:3306"
-    DB_NAME: "venezueladb"
-    SERVER_PORT: ":8080"
+data:
+  DB_HOST: "45.8.187.197:3306"
+  DB_NAME: "venezueladb"
+  SERVER_PORT: ":8080"
