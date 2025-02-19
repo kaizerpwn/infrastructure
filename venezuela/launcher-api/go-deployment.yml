@@ -4,6 +4,7 @@ metadata:
   name: venezuela-launcher-api-deployment
   labels:
     app: venezuela-launcher-api
+  namespace: venezuela
 spec:
   replicas: 1
   selector:

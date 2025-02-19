@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: venezuela-launcher-api-ingress
+  namespace: venezuela
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
