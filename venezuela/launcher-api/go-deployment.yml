@@ -5,7 +5,7 @@ metadata:
   labels:
     app: venezuela-launcher-api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: venezuela-launcher-api
@@ -14,6 +14,8 @@ spec:
       labels:
         app: venezuela-launcher-api
     spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
         - name: venezuela-launcher-api
           image: ghcr.io/kaizerpwn/venezuela-launcher-api:862b1e8f55becd56b2244d304be3c2b3b6ac66d4
