@@ -21,7 +21,7 @@ spec:
         kubernetes.io/arch: arm64
       containers:
         - name: carbo-container-production
-          image: ghcr.io/kaizerpwn/carbo-hackathon:09cd2568dbbdcafebefcbe72cca576a6408cb53b
+          image: ghcr.io/kaizerpwn/carbo-hackathon:0ecb2c69a51a5bdfec3c53c914c008c9174d0f13
           ports:
             - containerPort: 3000
           env:
