@@ -31,5 +31,7 @@ spec:
               value: "binary"
             - name: JWT_SECRET
               value: "ibrakadabra"
+            - name: OPENAI_API_KEY
+              value: "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"
       imagePullSecrets:
         - name: regcred
