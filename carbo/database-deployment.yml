@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-carbo-pvc-production
+  namespace: carbo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-carbo-deployment-production
+  namespace: carbo
+spec:
+  selector:
+    matchLabels:
+      app: mariadb-carbo-production
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mariadb-carbo-production
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: BJVfWRW3ZP3eC
+            - name: MYSQL_DATABASE
+              value: carbo
+            - name: MYSQL_USER
+              value: carbo
+            - name: MYSQL_PASSWORD
+              value: Yeo0uMIPP8Fcybe
+          ports:
+            - containerPort: 3306
+              name: mariadb
+          volumeMounts:
+            - name: mariadb-carbo-storage-production
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb-carbo-storage-production
+          persistentVolumeClaim:
+            claimName: mariadb-carbo-pvc-production
