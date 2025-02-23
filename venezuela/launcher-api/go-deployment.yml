@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: venezuela-launcher-api-deployment
+  labels:
+    app: venezuela-launcher-api
+  namespace: venezuela
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: venezuela-launcher-api
+  template:
+    metadata:
+      labels:
+        app: venezuela-launcher-api
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      containers:
+        - name: venezuela-launcher-api
+          image: ghcr.io/kaizerpwn/venezuela-launcher-api:fa16a7282f8fa024a27fa9a29e861da54df90db9
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: venezuela-launcher-api-secret
+                  key: DB_USER
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: venezuela-launcher-api-secret
+                  key: DB_PASS
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: venezuela-launcher-api-secret
+                  key: JWT_SECRET_KEY
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: venezuela-launcher-api-config
+                  key: DB_HOST
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: venezuela-launcher-api-config
+                  key: DB_NAME
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: venezuela-launcher-api-config
+                  key: SERVER_PORT
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
