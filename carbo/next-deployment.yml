@@ -13,6 +13,10 @@ spec:
       labels:
         app: carbo-production
     spec:
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
       nodeSelector:
         kubernetes.io/arch: arm64
       containers:
@@ -20,5 +24,12 @@ spec:
           image: ghcr.io/kaizerpwn/carbo-hackathon-next:93886f414d8873ccef0d5d41e23f5b3c26beacff
           ports:
             - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              value: "mysql://carbo:Yeo0uMIPP8Fcybe@mariadb-service-bellavog-staging:3306/carbo"
+            - name: PRISMA_CLIENT_ENGINE_TYPE
+              value: "binary"
+            - name: JWT_SECRET
+              value: "ibrakadabra"
       imagePullSecrets:
         - name: regcred
