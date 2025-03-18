@@ -16,7 +16,7 @@ spec:
         app: venezuela-launcher-api
     spec:
       imagePullSecrets:
-        - name: regcred
+        - name: registry-1
       nodeSelector:
         kubernetes.io/arch: arm64
       containers:
