@@ -84,4 +84,4 @@ spec:
                   name: crazy-donut-backend-secret-production
                   key: FRONTEND_URL
       imagePullSecrets:
-        - name: regcred
+        - name: registry-1
