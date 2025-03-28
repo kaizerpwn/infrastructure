@@ -21,7 +21,7 @@ spec:
         kubernetes.io/arch: arm64
       containers:
         - name: venezuela-launcher-api
-          image: ghcr.io/kaizerpwn/venezuela-launcher-api:c76c2f40b7211c1a74dc7ec5be269bb1904181fc
+          image: ghcr.io/kaizerpwn/venezuela-launcher-api:5d4224438b9db64b0b42067f0dba714a9f173974
           ports:
             - containerPort: 8080
           env:
